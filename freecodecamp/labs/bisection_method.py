@@ -1,5 +1,4 @@
 # implement a function that uses the bisection method to find the square root of a number
-
 def square_root_bisection(num, tolerance = 0.01, max_iterations = 50):
     if num < 0:
         raise ValueError("Square root of negative number is not defined in real numbers")
@@ -22,6 +21,8 @@ def square_root_bisection(num, tolerance = 0.01, max_iterations = 50):
             if mid * mid < num:
                 low = mid
             elif mid * mid > num:
+                high = mid
+            else:
                 high = mid
             iteration += 1
 

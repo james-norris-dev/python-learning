@@ -23,6 +23,8 @@ def square_root_bisection(num, tolerance = 0.01, max_iterations = 50):
                 low = mid
             elif mid * mid > num:
                 high = mid
+            else:
+                high = mid
             iteration += 1
 
         if iteration >= max_iterations:

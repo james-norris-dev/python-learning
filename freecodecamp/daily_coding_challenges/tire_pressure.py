@@ -10,7 +10,30 @@ Return an array with the following values for each tire:
 *** "High" if it's above the maximum allowed.
 
 """
-# First attempt
+# # First attempt
+# def tire_status(pressures_psi, range_bar):
+#     # Converted the range_bar values to min and max psi
+#     min_psi = range_bar[0] * 14.5038
+#     max_psi = range_bar[1] * 14.5038
+#
+#     # Created a new list to hold the tire status for all four tires
+#     pressures_status = []
+#
+#     # Iterate through the list of tire pressures
+#     # Compare them to the min and max
+#     # Attach the tire status for each tire to the new list
+#     for i in range(len(pressures_psi)):
+#         if pressures_psi[i] < min_psi:
+#             pressures_status.append("Low")
+#         elif pressures_psi[i] >= min_psi and pressures_status[i] <= max_psi:
+#             pressures_status.append("Good")
+#         else:
+#             pressures_status.append("High")
+#
+#     # Return the tire status list
+#     return pressures_status
+
+# More Pythonic
 def tire_status(pressures_psi, range_bar):
     # Converted the range_bar values to min and max psi
     min_psi = range_bar[0] * 14.5038
@@ -22,10 +45,10 @@ def tire_status(pressures_psi, range_bar):
     # Iterate through the list of tire pressures
     # Compare them to the min and max
     # Attach the tire status for each tire to the new list
-    for i in range(len(pressures_psi)):
-        if pressures_psi[i] < min_psi:
+    for pressure in pressures_psi:
+        if pressure < min_psi:
             pressures_status.append("Low")
-        elif pressures_psi[i] >= min_psi and pressures_status[i] <= max_psi:
+        elif min_psi <= pressure <= max_psi:
             pressures_status.append("Good")
         else:
             pressures_status.append("High")

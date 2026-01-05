@@ -25,7 +25,7 @@ Return an array with the following values for each tire:
 #     for i in range(len(pressures_psi)):
 #         if pressures_psi[i] < min_psi:
 #             pressures_status.append("Low")
-#         elif pressures_psi[i] >= min_psi and pressures_status[i] <= max_psi:
+#         elif pressures_psi[i] >= min_psi and pressures_psi[i] <= max_psi:
 #             pressures_status.append("Good")
 #         else:
 #             pressures_status.append("High")

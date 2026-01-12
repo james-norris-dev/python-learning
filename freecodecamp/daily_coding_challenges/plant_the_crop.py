@@ -9,7 +9,15 @@ CONVERSION_FACTORS = {
     "hectares": 10000
 }
 
-def get_number_of_plants(field_size, unit, crop):
+CROP_SPACING = {
+    "corn": 1,
+    "wheat": 0.1,
+    "soybeans": 0.5,
+    "tomatoes": 0.25,
+    "lettuce": 0.2
+}
+
+def get_number_of_plants(field_size: float, unit: str, crop: str) -> int:
     crop_unit = unit.lower()
     crop_name = crop.lower()
 
@@ -18,20 +26,12 @@ def get_number_of_plants(field_size, unit, crop):
 
     if crop_unit not in CONVERSION_FACTORS:
         raise ValueError("Invalid crop unit: must be either 'acres' or 'hectares'")
-    else:
-        total_square_meters = field_size * CONVERSION_FACTORS[crop_unit]
 
-    crop_spacing = {
-        "corn": 1,
-        "wheat": 0.1,
-        "soybeans": 0.5,
-        "tomatoes": 0.25,
-        "lettuce": 0.2
-    }
+    total_square_meters = field_size * CONVERSION_FACTORS[crop_unit]
 
-    if crop_name not in crop_spacing:
+
+    if crop_name not in CROP_SPACING:
         raise ValueError(f"Invalid crop: {crop}")
-    else:
-        plant_count = total_square_meters // crop_spacing[crop_name]
 
-    return plant_count
+    # noinspection PyTypeChecker
+    return total_square_meters // CROP_SPACING[crop_name]

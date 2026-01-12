@@ -4,14 +4,17 @@ of your farm field, and a type of crop, determine how many plants of that type y
 """
 
 def get_number_of_plants(field_size, unit, crop):
+    crop_unit = unit.lower()
     total_square_meters = 0
     plant_count = 0
     ACRE_SQUARE_METER = 4046.86
     HECTARE_SQUARE_METER = 10000
 
-    if unit == "acres":
+    if crop_unit != "acres" and crop_unit != "hectares":
+        raise ValueError("Invalid crop unit: must be either 'acres' or 'hectares'")
+    elif crop_unit == "acres":
         total_square_meters = field_size * ACRE_SQUARE_METER
-    elif unit == "hectares":
+    elif crop_unit == "hectares":
         total_square_meters = field_size * HECTARE_SQUARE_METER
 
     crop_spacing = {
